@@ -4,7 +4,8 @@
 - [x] `Saas`
 - [x] `ESLint + Prettier`
 - [x] `I18n`
-- [ ] `axios [ Not supported ]`
+- [ ] `axios [ Not supported >> useFetch ]`
+- [x] `Dark Mode`
 
 ## Setup
 

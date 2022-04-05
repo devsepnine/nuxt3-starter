@@ -1,3 +1,46 @@
-$headerColor: #e2e2e2;
-$bodyColor: #d2d2d2;
-$footerColor: #c2c2c2;
+@mixin light_mode {
+  --ui-color_bg: 0 0% 90%;
+  --ui-color_subbg: 0 0% 80%;
+  --ui-color_text: 0 0% 10%;
+}
+
+@mixin dark_mode {
+  --ui-color_bg: 0 0% 10%;
+  --ui-color_subbg: 0 0% 20%;
+  --ui-color_text: 0 0% 90%;
+}
+
+:root {
+  --sat: constant(safe-area-inset-top);
+  --sat: env(safe-area-inset-top);
+
+  --sar: constant(safe-area-inset-right);
+  --sar: env(safe-area-inset-right);
+
+  --sab: constant(safe-area-inset-bottom);
+  --sab: env(safe-area-inset-bottom);
+
+  --sal: constant(safe-area-inset-left);
+  --sal: env(safe-area-inset-left);
+  body {
+    @include light_mode;
+
+    @media (prefers-color-scheme: dark) {
+      @include dark_mode;
+    }
+
+    &[data-theme='light'] {
+      @include light_mode;
+    }
+
+    &[data-theme='dark'] {
+      @include dark_mode;
+    }
+  }
+}
+
+body {
+  color: hsl(var(--ui-color_text));
+  background-color: hsl(var(--ui-color_bg));
+  transition: background-color 200ms linear, color 200ms linear;
+}

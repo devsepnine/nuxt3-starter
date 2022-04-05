@@ -1,5 +1,5 @@
 <template>
-  <div class='main'>
+  <div class="main">
     <Header />
     <slot />
     <Footer />
@@ -9,6 +9,13 @@
 <script setup>
 import Footer from '~/components/Footer.vue';
 import Header from '~/components/Header.vue';
+
+const theme = useCookie('theme').value;
+useMeta({
+  bodyAttrs: {
+    'data-theme': theme,
+  },
+});
 </script>
 <script>
 export default {
@@ -18,13 +25,13 @@ export default {
       case 'ko':
         break;
       default:
-        locale ='en';
+        locale = 'en';
     }
     this.$i18n.locale = locale;
   },
 };
 </script>
-<style scoped lang='scss'>
+<style scoped lang="scss">
 .main {
   width: 100%;
   height: 100%;

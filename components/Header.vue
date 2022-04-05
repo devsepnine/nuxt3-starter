@@ -1,17 +1,13 @@
 <template>
-  <header>
-    Header
-  </header>
+  <header>Header</header>
 </template>
-<script>
-
-</script>
-<style scoped lang='scss'>
+<style scoped lang="scss">
 header {
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 100px;
-  background-color: $headerColor;
+  background-color: hsl(var(--ui-color_subbg));
+  transition: background-color 200ms linear;
 }
 </style>
