@@ -19,7 +19,7 @@ export default {
     this.$nextTick(() => {
       this.updateTheme();
       this.matchTheme = window.matchMedia('(prefers-color-scheme: dark)');
-      this.matchTheme.addEventListener('change', this.logON);
+      this.matchTheme.addEventListener('change', this.toggleTheme);
     });
   },
 
