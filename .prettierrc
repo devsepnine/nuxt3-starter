@@ -1,8 +1,8 @@
 {
-  "printWidth": 120,
+  "printWidth": 90,
   "semi": true,
   "singleQuote": true,
-  "trailingComma": "all",
+  "trailingComma": "es5",
   "bracketSpacing": false,
   "jsxSingleQuote": false,
   "jsxBracketSameLine": true,
@@ -11,9 +11,5 @@
   "tabWidth": 2,
   "useTabs": false,
   "stylelintIntegration": true,
-  "cssEnable": [
-    "css",
-    "less",
-    "sass"
-  ]
+  "cssEnable": ["css", "less", "sass"]
 }
