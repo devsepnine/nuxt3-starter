@@ -1,36 +1,38 @@
 <template>
   <div class="main">
-    <Header />
+    <layout-header />
     <slot />
-    <Footer />
+    <layout-footer />
   </div>
 </template>
 
-<script setup>
-import Footer from '~/components/Footer.vue';
-import Header from '~/components/Header.vue';
+<script setup lang="ts">
+import LayoutFooter from '~/components/LayoutFooter.vue';
+import LayoutHeader from '~/components/LayoutHeader.vue';
+import {useI18n} from 'vue-i18n';
 
-const theme = useCookie('theme').value;
-useMeta({
+const theme = useCookie('theme');
+const {locale} = useI18n();
+
+useHead({
   bodyAttrs: {
-    'data-theme': theme,
+    'data-theme': theme.value,
   },
 });
+
+onMounted(() => {
+  let lo = navigator.language.substring(0, 2);
+
+  switch (lo) {
+    case 'ko':
+      break;
+    default:
+      lo = 'en';
+  }
+  locale.value = lo;
+});
 </script>
-<script>
-export default {
-  mounted() {
-    let locale = navigator.language.substring(0, 2);
-    switch (locale) {
-      case 'ko':
-        break;
-      default:
-        locale = 'en';
-    }
-    this.$i18n.locale = locale;
-  },
-};
-</script>
+
 <style scoped lang="scss">
 .main {
   width: 100%;

@@ -5,62 +5,59 @@
     </div>
     <div class="fetch-data">{{ data }}</div>
     <div class="selector">
-      language :
+      {{ $t('Common.Language') }} :
       <select v-model="$i18n.locale">
-        <option value="en">en</option>
-        <option value="ko">ko</option>
+        <option value="en">English</option>
+        <option value="ko">한국어</option>
       </select>
     </div>
   </div>
   <div v-else></div>
 </template>
 
-<script setup>
-const {data} = await useFetch('/api/hello');
-</script>
+<script setup lang="ts">
+import {useI18n} from 'vue-i18n';
 
-<script>
-export default {
-  data() {
-    return {
-      minHeight: '0px',
-      data: '',
-      show: false,
-    };
-  },
-  beforeMount() {
-    this.calcMainHeight();
-  },
-  async mounted() {
-    await this.$nextTick(() => {
-      window.addEventListener('resize', this.calcMainHeight);
-      this.init();
-    });
-  },
-  methods: {
-    init() {
-      this.changeLanguage();
-      this.show = true;
-    },
+const res = await useFetch('/api/hello');
 
-    calcMainHeight() {
-      this.minHeight = window.innerHeight - 200 + 'px';
-    },
+const {locale} = useI18n();
+const minHeight = ref('0px');
+const show = ref(false);
+const data = ref(null);
+data.value = res.data.value;
 
-    async changeLanguage() {
-      const {data} = await useFetch(`/api/hello?lang=${this.$i18n.locale}`);
-      this.data = data.value;
-    },
-  },
-  watch: {
-    '$i18n.locale': async function () {
-      await this.changeLanguage();
-    },
-  },
-  beforeUnmount() {
-    window.removeEventListener('resize', this.calcMainHeight);
-  },
-};
+function init(): void {
+  show.value = true;
+  changeLanguage();
+}
+
+function calcMainHeight(): void {
+  minHeight.value = window.innerHeight - 200 + 'px';
+}
+
+async function changeLanguage(): Promise<void> {
+  const res = await useFetch(`/api/hello?lang=${locale.value}`);
+  data.value = res.data.value;
+}
+
+watch(locale, async () => {
+  await changeLanguage();
+});
+
+onBeforeMount(() => {
+  calcMainHeight();
+});
+
+onMounted(async () => {
+  await nextTick(() => {
+    window.addEventListener('resize', calcMainHeight);
+    init();
+  });
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', calcMainHeight);
+});
 </script>
 
 <style scoped lang="scss">

@@ -21,7 +21,7 @@ export default defineNuxtConfig({
         content: 'description',
       },
     ],
-    link: [],
+    link: [{rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}],
     script: [],
   },
 
