@@ -83,5 +83,20 @@ onBeforeUnmount(() => {
 }
 .selector {
   font-size: 20px;
+
+  select {
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: hsl(var(--ui-color_bg1));
+    color: hsl(var(--ui-color_text));
+    transition: background-color 200ms linear, color 200ms linear;
+
+    &:focus {
+      border: none;
+      border-radius: 5px;
+      outline: none;
+    }
+  }
 }
 </style>

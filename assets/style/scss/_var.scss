@@ -1,12 +1,14 @@
 @mixin light_mode {
   --ui-color_bg: 0 0% 90%;
-  --ui-color_subbg: 0 0% 80%;
+  --ui-color_bg1: 0 0% 80%;
+  --ui-color_bg2: 0 0% 70%;
   --ui-color_text: 0 0% 10%;
 }
 
 @mixin dark_mode {
   --ui-color_bg: 0 0% 10%;
-  --ui-color_subbg: 0 0% 20%;
+  --ui-color_bg1: 0 0% 20%;
+  --ui-color_bg2: 0 0% 30%;
   --ui-color_text: 0 0% 90%;
 }
 

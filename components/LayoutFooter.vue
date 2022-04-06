@@ -1,6 +1,6 @@
 <template>
   <footer>
-    Footer
+    <span class="desc">Footer</span>
     <button @click="clickToggleTheme">
       {{ theme ? 'dark' : 'light' }}
     </button>
@@ -62,16 +62,21 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
   min-height: 100px;
-  background-color: hsl(var(--ui-color_subbg));
+  background-color: hsl(var(--ui-color_bg1));
   transition: background-color 200ms linear;
 
+  .desc {
+    margin-bottom: 5px;
+  }
+
   button {
-    padding: 5px;
+    padding: 5px 10px;
     border: 2px solid hsl(var(--ui-color_bg));
     color: hsl(var(--ui-color_text));
-    background-color: hsl(var(--ui-color_subbg));
+    background-color: hsl(var(--ui-color_bg2));
+    transition: background-color 200ms linear, color 200ms linear, border 200ms linear;
   }
 }
 </style>
